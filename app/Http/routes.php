@@ -19,3 +19,7 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::group(['namespace' => 'Home', 'middleware' => 'auth'], function(){
+    Route::get('/', 'ListController@index');
+});

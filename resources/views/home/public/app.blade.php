@@ -5,13 +5,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>个人日历</title>
-        <link rel="stylesheet" href="{{ asset('/foundation-6/css/foundation.css') }}" />
-        <link rel="stylesheet" href="{{ asset('/foundation-6/css/app.css') }}" />
-        <!--<link rel="stylesheet" href="{{ asset('/css/app.css') }}" />-->
-        <script src="{{ asset('/foundation-6/js/vendor/jquery.min.js') }}"></script>
-        <script src="{{ asset('/foundation-6/js/foundation.min.js') }}"></script>
-        <script src="{{ asset('/foundation-6/js/foundation/foundation.topbar.js') }}"></script>
-        <script src="{{ asset('/foundation-6/js/app.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('/foundation-5.5.3/css/foundation.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/foundation-5.5.3/css/app.css') }}" />
+        <script src="{{ asset('/foundation-5.5.3/js/vendor/jquery.min.js') }}"></script>
     </head>
 
     <body>
@@ -35,7 +31,7 @@
                         <a href="#">{{ Auth::user()->name }} </a>
                         <ul class="dropdown">
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
-                            <li><a href="#">Coming.</a></li>
+                            <li><a href="#">Coming Soon.</a></li>
                         </ul>
                     </li>
                 @endif
@@ -43,33 +39,10 @@
         
             <!-- Left Nav Section -->
             <ul class="left">
-              <li><a href="#">Left Nav Button</a></li>
+              <li class="active"><a href="{{ url('/') }}">Home</a></li>
             </ul>
           </section>
         </nav>
-        <!--<div class="top-bar">
-            <div class="top-bar-left">
-                <ul class="menu">
-                    <li class="menu-text">My Calendar</li>
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                </ul>
-            </div>
-            <div class="top-bar-right">
-                <ul class="dropdown menu" data-dropdown-menu>
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/auth/login') }}">Login</a></li>
-                        <li><a href="{{ url('/auth/register') }}">Register</a></li>
-                    @else
-                        <li>
-                            <a href="#">{{ Auth::user()->name }} </a>
-                            <ul class="menu">
-                                <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </div>-->
         <div class="row column text-center">
             <h2>My Calendar</h2>
             <hr>
@@ -99,5 +72,8 @@
                 </ul>
             </div>
         </div>
+        <script src="{{ asset('/foundation-5.5.3/js/foundation.min.js') }}"></script>
+        <script src="{{ asset('/foundation-5.5.3/js/foundation/foundation.topbar.js') }}"></script>
+        <script src="{{ asset('/foundation-5.5.3/js/app.js') }}"></script>
     </body>
 </html>
