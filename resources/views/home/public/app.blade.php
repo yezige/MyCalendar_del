@@ -73,7 +73,7 @@
             </div>
         </div>
         <script src="{{ asset('/foundation-5.5.3/js/foundation.min.js') }}"></script>
-        <script src="{{ asset('/foundation-5.5.3/js/foundation/foundation.topbar.js') }}"></script>
+        <script src="{{ asset('/foundation-5.5.3/js/foundation/foundation.topbar.js') }}"></script><!--TopBat-->
         <script src="{{ asset('/foundation-5.5.3/js/app.js') }}"></script>
     </body>
 </html>
