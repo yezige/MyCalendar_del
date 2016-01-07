@@ -104,7 +104,7 @@ class AuthController extends BaseController {
         } else {//保存认证信息
             
             $client->authenticate($_GET['code']);
-            $_SESSION['access_token'] = $client->getAccessToken();
+            $_SESSION['access_token'] = $client->getAccessToken();return 1234;
             return '<script>window.close();</script>';
         }
     }
