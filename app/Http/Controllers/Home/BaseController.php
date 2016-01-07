@@ -5,7 +5,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ListController extends Controller {
+class BaseController extends Controller {
+
+    protected $client;
 
 	/**
 	 * Display a listing of the resource.
@@ -80,7 +82,6 @@ class ListController extends Controller {
 	{
 		//
 	}
-    protected $client;
 
     /**
      * 空操作
@@ -113,7 +114,7 @@ class ListController extends Controller {
         
         $this->client = $client = new \Google_Client();
         
-        $client->setAuthConfigFile(APP_PATH . 'common/google/client_secret.json');
+        $client->setAuthConfigFile(app('path') . '/Libs/google/client_secret.json');
         $client->addScope($scope);
         
         return $client;

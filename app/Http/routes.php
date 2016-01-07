@@ -16,7 +16,7 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-//自动映射/auth和/password下的方法，如auth/create => AuthController@create
+//自动映射/auth和/password下的方法，如auth/create => AuthController@getCreate/postCreate/anyCreate
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
@@ -34,7 +34,8 @@ Route::group(['middleware' => 'auth'], function(){
     
     //在这个组里边可以省略home访问前缀，可以省略Home文件夹
     Route::group(['prefix' => 'home', 'namespace' => 'Home'], function(){
-        //自动映射/home/auth下的资源(类似于controller)，如/home/auth/create => AuthController@create
+        //自动映射/home/auth下的资源(类似于controller)，如/home/auth/create => AuthController@create，除index/create/store/show/edit/update/destory需要先自行定义
+        Route::get('auth/oauth2callback', 'AuthController@oauth2callback');
         Route::resource('auth', 'AuthController');
     });
 });

@@ -7,7 +7,7 @@
         <title>个人日历</title>
         <link rel="stylesheet" href="{{ asset('/foundation-5.5.3/css/foundation.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('/foundation-5.5.3/css/app.css') }}" />
-        <script src="{{ asset('/foundation-5.5.3/js/vendor/jquery.min.js') }}"></script>
+        <script src="{{ asset('/foundation-5.5.3/js/vendor/jquery.js') }}"></script>
     </head>
 
     <body>

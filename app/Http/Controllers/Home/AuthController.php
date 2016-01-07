@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ListController extends Controller {
+class AuthController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -91,8 +91,8 @@ class ListController extends Controller {
      */
     public function oauth2callback() {
         $client = $this->getClient();
-        //$client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/home/auth/oauth2callback');
-        $client->setRedirectUri(U('/home/auth/oauth2callback'));
+        
+        $client->setRedirectUri(url('/home/auth/oauth2callback'));
 
         //如果尚未认证，生成认证URL
         if (!isset($_GET['code'])) {
@@ -118,7 +118,7 @@ class ListController extends Controller {
             $client->setAccessToken($_SESSION['access_token']);
             return $client;
         } else {
-            $redirect_uri = U('/home/auth/oauth2callback');
+            $redirect_uri = url('/home/auth/oauth2callback');
             header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
             exit;
         }
