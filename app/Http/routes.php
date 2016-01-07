@@ -11,15 +11,31 @@
 |
 */
 
+//其实被下边覆盖了
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
+//自动映射/auth和/password下的方法，如auth/create => AuthController@create
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::group(['namespace' => 'Home', 'middleware' => 'auth'], function(){
-    Route::get('/', 'ListController@index');
+//此组需要验证权限
+Route::group(['middleware' => 'auth'], function(){
+    //定义认证成功后跳转到根目录，默认是/home目录(如果不写这行，就跳转到/home了)
+    Route::get('/', 'Home\ListController@index');
+    
+    //在这个组里边可以省略Home文件夹，定义网站根目录，所在的文件在Home文件件下，且需要认证
+    Route::group(['namespace' => 'Home'], function(){
+        Route::get('/', 'ListController@index');
+    });
+    
+    //在这个组里边可以省略home访问前缀，可以省略Home文件夹
+    Route::group(['prefix' => 'home', 'namespace' => 'Home'], function(){
+        //自动映射/home/auth下的资源(类似于controller)，如/home/auth/create => AuthController@create
+        Route::resource('auth', 'AuthController');
+    });
 });
+
