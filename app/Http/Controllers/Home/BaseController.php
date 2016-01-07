@@ -82,31 +82,6 @@ class ListController extends Controller {
 	}
     protected $client;
 
-    public function _initialize() {
-        $loginname = cookie('loginname');
-        if (!isset($loginname)) {
-            //$this->redirect(U('Home/Login/login'));
-        } else {
-            if (cookie('remember')) {
-                cookie('worker_no', cookie('worker_no'));
-                cookie('loginname', cookie('loginname'));
-                cookie('password', cookie('password'));
-                cookie('remember', cookie('remember'));
-            } else {
-                cookie('worker_no', cookie('worker_no'), 0);
-                cookie('loginname', cookie('loginname'), 0);
-                cookie('password', cookie('password'), 0);
-            }
-
-            $worker_no = cookie('worker_no');
-            $this->worker_no = $worker_no;
-            //工程师工号
-            $this->workerInfo = M('JobsWorkers')->where("worker_no = $worker_no")->find(); ;//工程师信息
-            $this->username = $this->workerInfo['true_name'];
-            //当前登录名
-        }
-    }
-
     /**
      * 空操作
      * @author lixiaoli
@@ -132,7 +107,7 @@ class ListController extends Controller {
         if ($this->client) return $this->client;
         
         //注册自动加载
-        require_once (APP_PATH . 'common/google/google-api-php-client/src/Google/autoload.php');
+        //require_once (APP_PATH . 'common/google/google-api-php-client/src/Google/autoload.php');
         //默认日历
         $scope = $scope ? $scope : \Google_Service_Calendar::CALENDAR;
         
