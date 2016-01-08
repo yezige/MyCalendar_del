@@ -43,12 +43,12 @@
             </ul>
           </section>
         </nav>
-        <div class="row column text-center">
+        <!--<div class="row column text-center">
             <h2>My Calendar</h2>
             <hr>
-        </div>
+        </div>-->
         @yield('content')
-        <div class="callout large secondary">
+        <!--<div class="callout large secondary"/>
         <div class="row">
             <div class="large-4 columns">
                 <h5>Vivamus Hendrerit Arcu Sed Erat Molestie</h5>
@@ -71,7 +71,7 @@
                     <li><a href="#">Four</a></li>
                 </ul>
             </div>
-        </div>
+        </div>-->
         <script src="{{ asset('/foundation-5.5.3/js/foundation.min.js') }}"></script>
         <script src="{{ asset('/foundation-5.5.3/js/foundation/foundation.topbar.js') }}"></script><!--TopBat-->
         <script src="{{ asset('/foundation-5.5.3/js/app.js') }}"></script>

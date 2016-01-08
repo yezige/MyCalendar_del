@@ -1,37 +1,13 @@
 @extends('home.public.app')
 
 @section('content')
-<div class="row text-left">
-    <a id="get_calendar_button" class="success button" href="#">取得我的日历</a>
+<div class="row text-left margin-t-20">
+    <a id="get_calendar_button" class="success button radius" href="#">取得我的日历</a>
 </div>
 
 <div class="row">
-    <div class="large-6 medium-6 columns">
-        <div class="callout">
-            <p>Six columns</p>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="large-6 medium-6 columns">
-        <div class="callout">
-            <p>Six columns</p>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="large-6 medium-6 columns">
-        <div class="callout">
-            <p>Six columns</p>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="large-6 medium-6 columns">
-        <div class="callout">
-            <p>Six columns</p>
-        </div>
-    </div>
+    <div class="large-1 columns">1</div>
+    <div class="large-11 columns">11</div>
 </div>
 <script>
     $('#get_calendar_button').click(function() {

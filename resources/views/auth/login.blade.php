@@ -1,60 +1,50 @@
-@extends('app')
-
+@extends('home.public.app')
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Login</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
-
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="remember"> Remember Me
-									</label>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
-
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
-							</div>
-						</div>
-					</form>
-				</div>
+<div class="row margin-t-20">
+	<div class="small-8 medium-6 large-5 small-centered columns">
+		<div class="panel callout radius">
+			<div class="">
+				<h3>
+					Login
+				</h3>
 			</div>
+			@if (count($errors) > 0)
+			@foreach ($errors->all() as $error)
+			<div data-alert class="alert-box alert radius">
+				{{ $error }}
+				<a href="#" class="close">
+					&times;
+				</a>
+			</div>
+			@endforeach
+			@endif
+			<form data-abide method="POST" action="{{ url('/auth/login') }}">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<div class="email-field">
+					<label for="email">E-Mail Address <small>必填</small>
+						<input type="email" name="email" value="{{ old('email') }}" placeholder="somebody@example.com" required>
+					</label>
+					<small class="error">邮箱必填吆，亲</small>
+				</div>
+				<div>
+					<label for="password">Password <small>必填</small>
+						<input type="password" name="password" value="{{ old('email') }}" placeholder="Password" required>
+					</label>
+					<small class="error">密码必填吆，亲</small>
+				</div>
+				<label>
+					<input type="checkbox" name="remember">
+					Remember Me
+				</label>
+				<p>
+					<button type="submit" class="button radius">
+						Log In
+					</button>
+					<a href="{{ url('/password/email') }}">
+						Forgot your password?
+					</a>
+				</p>
+			</form>
 		</div>
 	</div>
 </div>
