@@ -15,7 +15,7 @@ class AuthController extends BaseController {
 	public function index()
 	{
 	    $client = $this->getClient();
-        $client = $this->authCallback($client);
+        $client = $this->authCallback($client);return 123;
         return '<script>window.close();</script>';
         /*$drive_service = new \Google_Service_Calendar($client);
         $calendarList = $drive_service->calendarList->listCalendarList();
@@ -104,7 +104,7 @@ class AuthController extends BaseController {
         } else {//保存认证信息
             
             $client->authenticate($_GET['code']);
-            $_SESSION['access_token'] = $client->getAccessToken();
+            $_SESSION['access_token'] = $client->getAccessToken();return 1234;
             return '<script>window.close();</script>';
         }
     }
