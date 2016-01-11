@@ -51,8 +51,28 @@ class ListController extends BaseController {
             $client = $this->authCallback($client);
             
             $drive_service = new \Google_Service_Calendar($client);
+            $cList = array();
             $calendarList = $drive_service->calendarList->listCalendarList();
-            $result = array('success' => true, 'msg' => '取得成功', 'cList' => $calendarList);
+            while(true) {
+                foreach ($calendarList->getItems() as $calendarListEntry) {
+                    $cList[] = array(
+                        'summary' => $calendarListEntry->getSummary(),
+                        'description' => $calendarListEntry->getDescription(),
+                        'timeZone' => $calendarListEntry->getTimeZone(),
+                        'colorId' => $calendarListEntry->getColorId(),
+                        'backgroundColor' => $calendarListEntry->getBackgroundColor(),
+                        'foregroundColor' => $calendarListEntry->getForegroundColor(),
+                    );
+                }
+                $pageToken = $calendarList->getNextPageToken();
+                if ($pageToken) {
+                    $optParams = array('pageToken' => $pageToken);
+                    $calendarList = $service->calendarList->listCalendarList($optParams);
+                } else {
+                    break;
+                }
+            }
+            $result = array('success' => true, 'msg' => '取得成功', 'cList' => $cList);
 	    }
         return json_encode($result);
 	}

@@ -19,7 +19,7 @@
                 if (flag) {//success
                     if (resp.authed) {
                         $.ajax({
-                            type:"post",
+                            type:"get",
                             url:"{{ url('/list/show') }}",
                             dataType: "json",
                             success: function(resp, flag, xhr){
