@@ -4,7 +4,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use Illuminate\Session;
 
 class ListController extends BaseController {
 
@@ -47,7 +46,7 @@ class ListController extends BaseController {
 	public function show($id)
 	{
 	    $result = array('success' => false, 'msg' => '授权失败');
-	    if (Session::has('access_token') && session('access_token')) {
+	    if (\Session::has('access_token') && session('access_token')) {
 	        $client = $this->getClient();
             $client = $this->authCallback($client);
             
@@ -92,7 +91,7 @@ class ListController extends BaseController {
 	}
     public function checkAuthed(){
         $authed = false;
-        if (Session::has('access_token') && session('access_token')) {
+        if (\Session::has('access_token') && session('access_token')) {
             $authed = true;
         }
         return json_encode(array('authed' => $authed, 'ss' => session('access_token')));

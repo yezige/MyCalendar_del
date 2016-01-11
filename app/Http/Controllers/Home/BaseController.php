@@ -4,7 +4,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use Illuminate\Session;
 
 class BaseController extends Controller {
 
@@ -126,7 +125,7 @@ class BaseController extends Controller {
      */
     public function authCallback($client) {
         //已经认证
-        if (Session::has('access_token') && session('access_token')) {
+        if (\Session::has('access_token') && session('access_token')) {
             
             $client->setAccessToken(session('access_token'));
             return $client;

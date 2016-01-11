@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use Illuminate\Session;
+
 class AuthController extends BaseController {
 
 	/**
@@ -104,7 +104,7 @@ class AuthController extends BaseController {
         } else {//保存认证信息
             
             $client->authenticate($_GET['code']);
-            Session::put('access_token', $client->getAccessToken());
+            \Session::put('access_token', $client->getAccessToken());
             return '<script>window.close();</script>';
         }
     }
