@@ -46,7 +46,7 @@ class ListController extends BaseController {
 	public function show($id)
 	{
 	    $result = array('success' => false, 'msg' => '授权失败');
-	    if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+	    if (Session::has('access_token') && session('access_token')) {
 	        $client = $this->getClient();
             $client = $this->authCallback($client);
             
@@ -91,9 +91,9 @@ class ListController extends BaseController {
 	}
     public function checkAuthed(){
         $authed = false;
-        if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+        if (Session::has('access_token') && session('access_token')) {
             $authed = true;
         }
-        return json_encode(array('authed' => $authed, 'ss' => $_SESSION));
+        return json_encode(array('authed' => $authed, 'ss' => session('access_token')));
     }
 }

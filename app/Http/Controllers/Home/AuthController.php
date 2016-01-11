@@ -104,28 +104,8 @@ class AuthController extends BaseController {
         } else {//保存认证信息
             
             $client->authenticate($_GET['code']);
-            $_SESSION['access_token'] = $client->getAccessToken();
+            Session::put('access_token', $client->getAccessToken());
             return '<script>window.close();</script>';
         }
     }
-
-    /**
-     * 设置认证
-     */
-    public function authCallback($client) {
-        //已经认证
-        if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-            
-            $client->setAccessToken($_SESSION['access_token']);
-            return $client;
-            
-        } else {//尚未认证，跳转到认证页面
-            
-            $redirect_uri = url('/home/auth/oauth2callback');
-            header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
-            exit;
-            
-        }
-    }
-
 }

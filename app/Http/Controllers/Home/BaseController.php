@@ -107,7 +107,7 @@ class BaseController extends Controller {
     public function getClient($scope = '') {
         if ($this->client) return $this->client;
         
-        //注册自动加载
+        //注册自动加载，在composer中加入"google/apiclient": "dev-master"，install一下就可以了
         //require_once (APP_PATH . 'common/google/google-api-php-client/src/Google/autoload.php');
         //默认日历
         $scope = $scope ? $scope : \Google_Service_Calendar::CALENDAR;
@@ -118,5 +118,24 @@ class BaseController extends Controller {
         $client->addScope($scope);
         
         return $client;
+    }
+    
+    /**
+     * 设置认证
+     */
+    public function authCallback($client) {
+        //已经认证
+        if (Session::has('access_token') && session('access_token')) {
+            
+            $client->setAccessToken(session('access_token'));
+            return $client;
+            
+        } else {//尚未认证，跳转到认证页面
+            
+            $redirect_uri = url('/home/auth/oauth2callback');
+            header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+            exit;
+            
+        }
     }
 }
