@@ -5,7 +5,7 @@
     <a id="get_calendar_button" class="success button radius" href="#">取得我的日历</a>
 </div>
 
-<div class="row">
+<div class="row" id="cList">
     <div class="large-1 columns">1</div>
     <div class="large-11 columns">11</div>
 </div>
@@ -24,7 +24,16 @@
                             dataType: "json",
                             success: function(resp, flag, xhr){
                                 if (flag) {//success
-                                    
+                                    $('#cList').html('');
+                                    $.each(resp.cList, function(i, v){
+                                        var row = '<div class="row">' +
+                                            '<div class="large-6 columns">' +
+                                                v.summary +
+                                                '<br>' + '<small class="description">' + v.description + '</small>' +
+                                            '</div>' +
+                                        '</div>';
+                                        $('#cList').append(row);
+                                    });
                                 }
                             }
                         });

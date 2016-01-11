@@ -73,7 +73,14 @@ class ListController extends BaseController {
                 }
             }
             $result = array('success' => true, 'msg' => '取得成功', 'cList' => $cList);
-	    }
+	    }$result = array('success' => true, 'msg' => '取得成功', 'cList' => array(array(
+                        'summary' => '生日',
+                        'description' => '显示 Google 通讯录和 Google+“你的圈子”（可选）中用户的生日，同时显示 Google 通讯录中的纪念日和其他活动日期（如果适用）。',
+                        'timeZone' => 'Asia/Shanghai',
+                        'colorId' => '21',
+                        'backgroundColor' => '#cca6ac',
+                        'foregroundColor' => '#000000',
+                    )));
         return json_encode($result);
 	}
 
@@ -114,6 +121,6 @@ class ListController extends BaseController {
         if (\Session::has('access_token') && session('access_token')) {
             $authed = true;
         }
-        return json_encode(array('authed' => $authed, 'ss' => session('access_token')));
+        return json_encode(array('authed' => true));
     }
 }
