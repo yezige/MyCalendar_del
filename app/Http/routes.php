@@ -29,7 +29,9 @@ Route::group(['middleware' => 'auth'], function(){
     
     //在这个组里边可以省略Home文件夹，定义网站根目录，所在的文件在Home文件件下，且需要认证
     Route::group(['namespace' => 'Home'], function(){
-        Route::get('/', 'ListController@index');
+        //Route::get('/', 'ListController@index');
+        Route::any('list/checkAuthed', 'ListController@checkAuthed');
+        Route::resource('list', 'ListController');
     });
     
     //在这个组里边可以省略home访问前缀，可以省略Home文件夹

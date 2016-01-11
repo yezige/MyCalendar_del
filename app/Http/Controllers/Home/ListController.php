@@ -45,7 +45,16 @@ class ListController extends BaseController {
 	 */
 	public function show($id)
 	{
-		//
+	    $result = array('success' => false, 'msg' => '授权失败');
+	    if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+	        $client = $this->getClient();
+            $client = $this->authCallback($client);
+            
+            $drive_service = new \Google_Service_Calendar($client);
+            $calendarList = $drive_service->calendarList->listCalendarList();
+            $result = array('success' => true, 'msg' => '取得成功', 'cList' => $calendarList);
+	    }
+        return json_encode($result);
 	}
 
 	/**
@@ -80,5 +89,11 @@ class ListController extends BaseController {
 	{
 		//
 	}
-
+    public function checkAuthed(){
+        $authed = false;
+        if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+            $authed = true;
+        }
+        return json_encode(array('authed' => $authed));
+    }
 }

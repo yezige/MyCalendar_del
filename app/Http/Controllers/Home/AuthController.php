@@ -15,7 +15,7 @@ class AuthController extends BaseController {
 	public function index()
 	{
 	    $client = $this->getClient();
-        $client = $this->authCallback($client);return 123;
+        $client = $this->authCallback($client);
         return '<script>window.close();</script>';
         /*$drive_service = new \Google_Service_Calendar($client);
         $calendarList = $drive_service->calendarList->listCalendarList();
@@ -104,7 +104,7 @@ class AuthController extends BaseController {
         } else {//保存认证信息
             
             $client->authenticate($_GET['code']);
-            $_SESSION['access_token'] = $client->getAccessToken();return 1234;
+            $_SESSION['access_token'] = $client->getAccessToken();
             return '<script>window.close();</script>';
         }
     }
@@ -113,14 +113,18 @@ class AuthController extends BaseController {
      * 设置认证
      */
     public function authCallback($client) {
-
+        //已经认证
         if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+            
             $client->setAccessToken($_SESSION['access_token']);
             return $client;
-        } else {
+            
+        } else {//尚未认证，跳转到认证页面
+            
             $redirect_uri = url('/home/auth/oauth2callback');
             header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
             exit;
+            
         }
     }
 

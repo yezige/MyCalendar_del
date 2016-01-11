@@ -11,24 +11,34 @@
 </div>
 <script>
     $('#get_calendar_button').click(function() {
-        window.open(
-            "{{ url('/home/auth') }}",
-            "_blank",
-            "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=650, height=600, left=360, top=85"
-        );
-        
-        /*$.ajax({
-            type: "post",
-            url: "{:U('/home/auth/oauth2callback')}",
-            async: true,
+        $.ajax({
+            type:"get",
+            url:"{{ url('/list/checkAuthed') }}",
             dataType: "json",
-            data: {
-                status: 123,
-            },
-            success: function(data) {
-                console.log(data);
-            }
-        });*/
+            success: function(resp, flag, xhr){
+                if (flag) {//success
+                    if (resp.authed) {
+                        $.ajax({
+                            type:"post",
+                            url:"{{ url('/list/show') }}",
+                            dataType: "json",
+                            success: function(resp, flag, xhr){
+                                if (flag) {//success
+                                    
+                                }
+                            }
+                        });
+                    } else {
+                        window.open(
+                            "{{ url('/home/auth') }}",
+                            "_blank",
+                            "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=650, height=600, left=360, top=85"
+                        );
+                    }
+                }
+        	}
+        });
+        return false;
     });
 </script>
 @endsection
