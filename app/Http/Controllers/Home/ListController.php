@@ -94,6 +94,6 @@ class ListController extends BaseController {
         if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             $authed = true;
         }
-        return json_encode(array('authed' => $authed));
+        return json_encode(array('authed' => $authed, 'ss' => $_SESSION));
     }
 }
