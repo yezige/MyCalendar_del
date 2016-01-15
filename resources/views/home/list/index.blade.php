@@ -6,8 +6,7 @@
 </div>
 
 <div class="row" id="cList">
-    <div class="large-1 columns">1</div>
-    <div class="large-11 columns">11</div>
+    <div class="large-11 columns">点击按钮取得日历列表</div>
 </div>
 <script>
     $('#get_calendar_button').click(function() {
@@ -29,6 +28,7 @@
                                         var row = '<div class="row">' +
                                             '<div class="large-6 columns">' +
                                                 v.summary +
+                                                '<span class="badge text-right">1</span>' +
                                                 '<br>' + '<small class="description">' + v.description + '</small>' +
                                             '</div>' +
                                         '</div>';

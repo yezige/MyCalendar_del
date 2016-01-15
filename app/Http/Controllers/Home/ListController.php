@@ -80,6 +80,13 @@ class ListController extends BaseController {
                         'colorId' => '21',
                         'backgroundColor' => '#cca6ac',
                         'foregroundColor' => '#000000',
+                    ),array(
+                        'summary' => '生日日',
+                        'description' => '显示 Google 通讯录和 Google+“你的圈子”（可选）中用户的生日，同时显示 Google 通讯录中的纪念日和其他活动日期（如果适用）。',
+                        'timeZone' => 'Asia/Shanghai',
+                        'colorId' => '21',
+                        'backgroundColor' => '#cca6ac',
+                        'foregroundColor' => '#000000',
                     )));
         return json_encode($result);
 	}
